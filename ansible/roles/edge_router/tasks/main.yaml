@@ -51,3 +51,20 @@
     sysctl_file: /etc/sysctl.conf
     reload: yes
   loop: "{{ network_configuration.routers.value[inventory_hostname].vlans }}"
+
+- name: Configuring IP forwarding for Bridge
+  sysctl:
+    name: "net.ipv4.ip_forward"
+    value: 1
+    state: present
+    sysctl_file: /etc/sysctl.conf
+    reload: yes
+
+- name: NAT traffic
+  ansible.builtin.iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: "{{ initial_bond_name }}"
+    source: 192.168.0.0/16
+    jump: MASQUERADE
+  become: yes
