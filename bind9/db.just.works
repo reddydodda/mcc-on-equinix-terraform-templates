@@ -1,0 +1,35 @@
+$TTL    604800
+@       IN      SOA     it.just.works. root.it.just.works. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns1.it.just.works.
+ns      IN      A       192.168.0.1
+ns      IN      A       192.168.1.1
+ns      IN      A       192.168.2.1
+
+
+mcc.it.just.works.        IN      A      192.168.0.205
+iam.it.just.works.        IN      A      192.168.0.206
+
+
+barbican.it.just.works.        IN      A      192.168.1.100
+cinder.it.just.works.        IN      A      192.168.1.100
+cloudformation.it.just.works.        IN      A      192.168.1.100
+designate.it.just.works.        IN      A      192.168.1.100
+glance.it.just.works.        IN      A      192.168.1.100
+heat.it.just.works.        IN      A      192.168.1.100
+horizon.it.just.works.        IN      A      192.168.1.100
+metadata.it.just.works.        IN      A      192.168.1.100
+neutron.it.just.works.        IN      A      192.168.1.100
+nova.it.just.works.        IN      A      192.168.1.100
+novncproxy.it.just.works.        IN      A      192.168.1.100
+octavia.it.just.works.        IN      A      192.168.1.100
+placement.it.just.works.        IN      A      192.168.1.100
+keystone.it.just.works.        IN      A      192.168.1.100
+manila.it.just.works.        IN      A      192.168.1.100
+masakari.it.just.works.        IN      A      192.168.1.100
+rgw-store.it.just.works        IN      A     192.168.1.100
