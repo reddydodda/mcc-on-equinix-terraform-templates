@@ -1,21 +1,21 @@
 $TTL    604800
-@       IN      SOA     it.just.works. root.it.just.works. (
-                              2         ; Serial
-                         604800         ; Refresh
-                          86400         ; Retry
-                        2419200         ; Expire
-                         604800 )       ; Negative Cache TTL
+@       IN      SOA     ns1.it.just.works. root.it.just.works. (
+                  3       ; Serial
+             604800     ; Refresh
+              86400     ; Retry
+            2419200     ; Expire
+             604800 )   ; Negative Cache TTL
 ;
-@       IN      NS      ns1.it.just.works.
-ns      IN      A       192.168.0.1
-ns      IN      A       192.168.1.1
-ns      IN      A       192.168.2.1
+; name servers - NS records
+     IN      NS      ns1.it.just.works.
 
+ns1.it.just.works.      IN      A       192.168.0.1
 
+; MCC and IAM A record
 mcc.it.just.works.        IN      A      192.168.0.205
 iam.it.just.works.        IN      A      192.168.0.206
 
-
+; MOS A records
 barbican.it.just.works.        IN      A      192.168.1.100
 cinder.it.just.works.        IN      A      192.168.1.100
 cloudformation.it.just.works.        IN      A      192.168.1.100
