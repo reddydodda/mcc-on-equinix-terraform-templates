@@ -1,12 +1,14 @@
 ---
 - name: Remove br0 bridge
-  shell: ip link delete dev br0
+  ansible.builtin.command: ip link delete dev br0
+  changed_when: false
   notify:
-    - restart networking
+    - Restart networking
 
 - name: Ensure bridge configuration is removed
-  file:
+  ansible.builtin.file:
     state: absent
-    path: /etc/network/interfaces.d/bridge.cfg
+    path: "{{ config_seed_interfaces }}"
   notify:
-    - restart networking 
+    - Restart networking
+    - Restart isc-dhcp-relay

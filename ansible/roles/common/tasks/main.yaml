@@ -1,16 +1,20 @@
 ---
 - name: Update packages list
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
 
-- name: Make sure interfaces.d included in common configuration
-  become: yes
-  lineinfile:
+- name: Make sure interfaces.d included in common configuration in proper order
+  become: true
+  ansible.builtin.blockinfile:
     path: /etc/network/interfaces
-    line: "source /etc/network/interfaces.d/*.cfg"
+    block: |
+      source {{ config_vlan_interfaces }}
+      source {{ config_vxlan_interfaces }}
+      source {{ config_vxlan_bridge }}
+      source {{ config_seed_interfaces }}
     state: present
   notify:
-  - restart networking
+    - Restart networking
 
 - name: Install bridge-utils
   ansible.builtin.package:
@@ -18,6 +22,6 @@
     state: present
 
 - name: Get network configuration from file
-  include_vars:
+  ansible.builtin.include_vars:
     file: "{{ network_config_path }}"
     name: network_configuration
